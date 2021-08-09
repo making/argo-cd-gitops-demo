@@ -1,0 +1,21 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:overlay", "overlay")
+#@ domain_name = data.values.external_url.replace("http://", "").replace("https://", "")
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-tanzu
+  namespace: #@ data.values.namespace
+spec:
+  rules:
+  - host: #@ domain_name
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-tanzu
+            port:
+              number: 8080

@@ -1,0 +1,40 @@
+#@ load("@ytt:data", "data")
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: #@ data.values.namespace
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-tanzu
+  name: hello-tanzu
+  namespace: #@ data.values.namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-tanzu
+  template:
+    metadata:
+      labels:
+        app: hello-tanzu
+    spec:
+      containers:
+      - name: hello-tanzu
+        image: #@ data.values.app_image
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hello-tanzu
+  name: hello-tanzu
+  namespace: #@ data.values.namespace
+spec:
+  ports:
+  - name: http
+    port: 8080
+  selector:
+    app: hello-tanzu

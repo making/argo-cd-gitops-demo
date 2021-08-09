@@ -1,0 +1,5 @@
+#!/bin/bash
+set -eu -o pipefail
+
+ytt -f $(dirname $0)/../base \
+    -f $(dirname $0)/values.yaml

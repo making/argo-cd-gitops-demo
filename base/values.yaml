@@ -1,0 +1,6 @@
+#@data/values
+#@overlay/match-child-defaults missing_ok=True
+---
+namespace: demo
+app_image: ghcr.io/making/hello-tanzu:latest
+external_url: https://hello-tanzu.example.com
