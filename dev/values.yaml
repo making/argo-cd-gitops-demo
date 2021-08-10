@@ -3,4 +3,4 @@
 ---
 namespace: demo-dev
 app_image: ghcr.io/making/hello-tanzu@sha256:0d7e286c2eb92a0338fb028e2724bfdc36d917022d0012604cc740976aeffab5
-external_url: https://hello-tanzu.dev.local.ik.am
+external_url: http://hello-tanzu.dev.localhost.ik.am
